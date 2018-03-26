@@ -541,7 +541,11 @@ Raven.prototype = {
     }
 
     options = options || {};
-    msg = msg + ''; // Make sure it's actually a string
+    if (typeof msg === 'object' && msg !== null) {
+      msg = JSON.stringify(msg);
+    } else {
+      msg = '' + msg;
+    }
 
     var data = objectMerge(
       {
